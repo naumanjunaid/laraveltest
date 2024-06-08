@@ -21,6 +21,7 @@ class ProcessSubmission implements ShouldQueue
      */
     public function __construct($data)
     {
+        Log::info('Submission data:', $data);
         $this->submission = $data;
     }
 
@@ -29,7 +30,11 @@ class ProcessSubmission implements ShouldQueue
      */
     public function handle(): void
     {
-        $submission = Submission::create($this->submission);
-        Log::info('Processing submission:', $submission);
+        try {
+            $submission = Submission::create($this->submission);
+            Log::info('Processing submission:', $submission);
+        } catch (\Exception $e) {
+            Log::error('Error creating submission: ' . $e->getMessage());
+        }
     }
 }
