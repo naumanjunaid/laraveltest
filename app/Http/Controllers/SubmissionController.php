@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SubmissionRequest;
+use App\Jobs\ProcessSubmission;
 use App\Models\Submission;
 
 class SubmissionController extends Controller
@@ -17,7 +18,7 @@ class SubmissionController extends Controller
         $data['message'] = $request->post('message');
 
 
-        $submission = Submission::create($data);
+        ProcessSubmission::dispatch($data);
 
         return response()->json([
             'success' => true,
