@@ -1,5 +1,16 @@
 # Laravel Submission Appliation
 
+## Environment
+
+-   copy `.env.example` to `.env` file, run `cp .env.expample .env`
+-   change the following as per system
+
+```
+DB_DATABASE=test
+DB_USERNAME=
+DB_PASSWORD=
+```
+
 ## Local Server
 
 -   run `php artisan serve` to have a local working application
@@ -26,6 +37,7 @@
 ## JOBS
 
 -   run `php artisan queue:work` to manage queues
+-   change `QUEUE_CONNECTION=database` in `.env` file
 
 ## Testing
 
