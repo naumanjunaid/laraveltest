@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Events\SubmissionSaved;
 use App\Models\Submission;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -21,7 +22,6 @@ class ProcessSubmission implements ShouldQueue
      */
     public function __construct($data)
     {
-        Log::info('Submission data:', $data);
         $this->submission = $data;
     }
 
@@ -32,7 +32,8 @@ class ProcessSubmission implements ShouldQueue
     {
         try {
             $submission = Submission::create($this->submission);
-            Log::info('Processing submission:', $submission);
+            Log::info('Processing submission:', $this->submission);
+            event(new SubmissionSaved($submission));
         } catch (\Exception $e) {
             Log::error('Error creating submission: ' . $e->getMessage());
         }
