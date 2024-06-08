@@ -26,6 +26,16 @@ class ProcessSubmission implements ShouldQueue
     }
 
     /**
+     * Get the submission instance.
+     *
+     * @return Submission
+     */
+    public function getSubmission(): Submission
+    {
+        return $this->submission;
+    }
+
+    /**
      * Execute the job.
      */
     public function handle(): void
