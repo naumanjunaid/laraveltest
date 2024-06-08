@@ -1,4 +1,4 @@
-# Larave Submission Appliation
+# Laravel Submission Appliation
 
 ## Local Server
 
